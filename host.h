@@ -14,7 +14,10 @@ public:
 signals:
     void amountOfTimeHaveChanged(int amountOfTime);
 public slots:
+//    void setTime(int amountOfTime);
     int counting(int amountOfTime);
+    int update();
+//    int change(int time, int amount);
 };
 
 #endif // HOST_H

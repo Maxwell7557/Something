@@ -35,7 +35,7 @@ Window
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 60
-        onTextChanged: host.amountOfTimeHaveChanged(timeLeft.text);
+//        onTextChanged: host.amountOfTimeHaveChanged(timeLeft.text);
     }
 
     Connections

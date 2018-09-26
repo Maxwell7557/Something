@@ -7,15 +7,30 @@ Host::Host()
 
 int Host::counting(int amountOfTime)
 {
-    connect(timer, SIGNAL(amountOfTimeChanged()), this, SLOT(counting(int)));
+    time = amountOfTime;
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(100);
 
-    if (amountOfTime != 0)
+//    time = update();
+
+    return time;
+}
+
+int Host::update()
+{
+    connect(this,SIGNAL(amountOfTimeHaveChanged(int)), this, SLOT(counting(int)));
+
+    if (time != 0)
     {
-        amountOfTime -= 1;
+        time -= 1;
+    }
+    else
+    {
+        time = 0;
     }
 
-    emit amountOfTimeHaveChanged(amountOfTime);
+    emit amountOfTimeHaveChanged(time);
 
-    return amountOfTime;
+    return time;
 }
