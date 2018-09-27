@@ -33,19 +33,17 @@ Window
         text: "Set time"
         onClicked:
         {
-            host.startOfTimer();
+            host.startOfTimer(timeLeft,timeField.text);
             host.counting(timeField.text)
         }
     }
 
     Text
     {
-        objectName: "textLable"
         id: timeLeft
         text: host.returnOfValue()
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 60
     }
-
 }
