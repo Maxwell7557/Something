@@ -1,39 +1,40 @@
 #include "host.h"
+#include <qdebug.h>
 
 Host::Host()
 {
+    time = 0;
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    connect(this,SIGNAL(amountOfTimeHaveChanged(int)), this, SLOT(counting(int)));
-
-//    QObject *obj = this->parent()->findChild("timeText");
+    connect(this,SIGNAL(amountOfTimeHaveChanged()), this, SLOT(returnOfValue()));
+//    QObject *obj = this->parent()->findChild("textLable");
 }
 
 void Host::startOfTimer()
 {
-    timer->start(100);
+    timer->start(1000);
 }
 
-int Host::counting(int amountOfTime)
+void Host::counting(int amountOfTime)
 {
     time = amountOfTime;
+}
 
-    return last;
+int Host::returnOfValue()
+{
+    qDebug() << time;
+    return time;
 }
 
 void Host::update()
 {
     if (time != 0)
     {
-        time -= 1;
+        time = time - 1;
     }
     else
     {
         time = 0;
     }
 
-    last = time;
-
-    obj->setProperty("text",time);
-
-    emit amountOfTimeHaveChanged(time);
+    emit amountOfTimeHaveChanged();
 }

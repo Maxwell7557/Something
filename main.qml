@@ -24,19 +24,25 @@ Window
 
         anchors.top: parent.top
         anchors.left: parent.left
+    }
 
-        onTextChanged:
+    Button
+    {
+        anchors.left: timeField.right
+        anchors.top: parent.top
+        text: "Set time"
+        onClicked:
         {
             host.startOfTimer();
-//            host.counting(timeField.text)
+            host.counting(timeField.text)
         }
     }
 
     Text
     {
-        objectName: timeText
+        objectName: "textLable"
         id: timeLeft
-        text: host.counting(timeField.text)
+        text: host.returnOfValue()
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 60
