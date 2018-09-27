@@ -8,16 +8,18 @@ class Host: public QObject
 {
     Q_OBJECT
     QTimer *timer = new QTimer(this);
+    QObject *obj = this->parent()->findChild("timeText");
 public:
     int time;
+    int last;
+
     Host();
 signals:
     void amountOfTimeHaveChanged(int amountOfTime);
 public slots:
-//    void setTime(int amountOfTime);
     int counting(int amountOfTime);
-    int update();
-//    int change(int time, int amount);
+    void update();
+    void startOfTimer();
 };
 
 #endif // HOST_H

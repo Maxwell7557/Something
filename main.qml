@@ -24,24 +24,22 @@ Window
 
         anchors.top: parent.top
         anchors.left: parent.left
+
+        onTextChanged:
+        {
+            host.startOfTimer();
+//            host.counting(timeField.text)
+        }
     }
 
     Text
     {
+        objectName: timeText
         id: timeLeft
         text: host.counting(timeField.text)
-//        height: 200
-//        width: 200
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 60
-//        onTextChanged: host.amountOfTimeHaveChanged(timeLeft.text);
-    }
-
-    Connections
-    {
-        target: timeLeft
-
     }
 
 }

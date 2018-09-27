@@ -2,25 +2,26 @@
 
 Host::Host()
 {
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    connect(this,SIGNAL(amountOfTimeHaveChanged(int)), this, SLOT(counting(int)));
 
+//    QObject *obj = this->parent()->findChild("timeText");
+}
+
+void Host::startOfTimer()
+{
+    timer->start(100);
 }
 
 int Host::counting(int amountOfTime)
 {
     time = amountOfTime;
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(100);
-
-//    time = update();
-
-    return time;
+    return last;
 }
 
-int Host::update()
+void Host::update()
 {
-    connect(this,SIGNAL(amountOfTimeHaveChanged(int)), this, SLOT(counting(int)));
-
     if (time != 0)
     {
         time -= 1;
@@ -30,7 +31,9 @@ int Host::update()
         time = 0;
     }
 
-    emit amountOfTimeHaveChanged(time);
+    last = time;
 
-    return time;
+    obj->setProperty("text",time);
+
+    emit amountOfTimeHaveChanged(time);
 }
