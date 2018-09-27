@@ -30,6 +30,8 @@ int Host::returnOfValue()
 
 void Host::update()
 {
+    obj->setProperty("text",time);
+
     if (time != 0)
     {
         time = time - 1;
@@ -39,7 +41,4 @@ void Host::update()
         time = 0;
         timer->stop();
     }
-
-//    emit amountOfTimeHaveChanged();
-    obj->setProperty("text",time);
 }
