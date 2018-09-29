@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
 import QtQuick.Controls 2.2
+import QtQuick.Dialogs 1.2
 import MyModule 1.0
 
 Window
@@ -20,7 +21,7 @@ Window
     TextField
     {
         id: timeField
-        placeholderText: "Введи число секунд."
+        placeholderText: "Enter number of seconds."
 
         anchors.top: parent.top
         anchors.left: parent.left
@@ -45,5 +46,26 @@ Window
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 60
+    }
+
+    Dialog
+    {
+        id: dialog
+        width: 200
+        height: 100
+        title: qsTr("---Attention---")
+        Text
+        {
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            text: "Time's up!"
+            font.pointSize: 40
+        }
+    }
+
+    Connections
+    {
+        target: host
+        onTimeIsUp: dialog.open()
     }
 }

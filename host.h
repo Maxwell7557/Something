@@ -13,12 +13,15 @@ public:
     QObject *obj;
     Host();
 signals:
+    void timeIsUp();
     void amountOfTimeHaveChanged();
+    void isTimeUpSignal();
 public slots:
     void counting(int amountOfTime);
     int returnOfValue();
     void update();
-    void startOfTimer(QObject *obj, int amountOfTime);
+    void startOfTimer(QObject *object, int amountOfTime);
+    void chek();
 };
 
 #endif // HOST_H
